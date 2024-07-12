@@ -1,2 +1,2 @@
-# atcoder-contests
-Solutions of Problems that I have solved during Atcoder Contests
+# contests
+Solutions of problem that I solve during/post contests

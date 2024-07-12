@@ -11,6 +11,9 @@
 *.gch
 *.pch
 
+# Binary Files
+*.bin
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
@@ -33,3 +36,6 @@
 
 # VS Code Files
 .vscode/
+
+# Extension Files
+*.cph/
