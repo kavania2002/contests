@@ -17,30 +17,26 @@ using namespace std;
 
 void solve(){
     int n; cin >> n;
- 
-    vector<string> graph(n);
-    forp(i,0,n) cin >> graph[i];
- 
-    map<int, vector<int>> mp;
+    vecs arr(n); forp(i, 0, n) cin >> arr[i];
+
+    veci l(n, 0), r(n, n-1);
+    veci ans(n);
     forp(i,0,n) {
-        int count = 0;
+        int cnt = 0;
+        forp(j,0,n) if (l[i] == l[j] && r[i] == r[j] && arr[i][j] == '1') cnt++;
+
+        int pos = r[i] - cnt;
+        ans[pos] = i + 1;
+
         forp(j,0,n) {
-            if(graph[i][j] == '1') count++;
+            if (l[i] == l[j] && r[i] == r[j] && i != j) {
+                if (arr[i][j] == '0') r[j] = pos - 1;
+                else l[j] = pos + 1;
+            }
         }
-        mp[count].pb(i);
+        l[i] = r[i] = pos;
     }
-    
-    for (auto &x: mp) {
-        if (x.second.size() == 1) {
-            cout << x.second[0] + 1 << " ";
-        } else {
-            sort(all(x.second), [&](int a, int b) {
-                if (a < b) return graph[a][b] == '1';
-                return graph[b][a] == '0';
-            });
-            for (int &y: x.second) cout << y + 1 << " ";
-        }
-    }
+    forp(i,0,n) cout << ans[i] << " ";
     cout << endl;
 }
 
